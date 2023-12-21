@@ -8,7 +8,7 @@
                   <div>
                         <p>Area do projeto</p>
                         <select class="form-input" v-model="area">
-                              <option selected disabled hidden>Selecione</option>
+                              <option value="none" selected disabled hidden>Selecione</option>
                               <option value="Engenharia">Engenharia</option>
                               <option value="Arquitetura">Arquitetura</option>
                               <option value="Mecanica">Mecânica</option>
@@ -23,8 +23,8 @@
                         <input class="form-input" type="text" name="tittle" id="tittle" placeholder="Digite um valor.." v-model="price">
                   </div>
                   <div>
-                        <button class="form-button" @click="add">Cadastrar</button>
-                        <button class="form-button">Limpar</button>
+                        <button class="form-button" type="submit" @click="add">Cadastrar</button>
+                        <button class="form-button" type="reset">Limpar</button>
                   </div>
             </div>
       </div>
@@ -32,7 +32,7 @@
 
 <script>
 
-      import { mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
       export default{
             data(){
@@ -42,26 +42,36 @@
             },
             computed: {
             },
-            mounted() {
-                  if (localStorage.getSequence()){
-                        this.sequence = localStorage.getSequence()
+            watch: {
+                  sequence(){
+                        localStorage.setItem('sequence', this.sequence)
                   }
             },
-            unmounted(){
-                  localStorage.setItem(this.sequence)
+            mounted() {
+                  if (localStorage.getItem('sequence')){
+                        this.sequence = localStorage.getItem('sequence')
+                  }
+            },
+            beforeUpdate(){
+                  
             },
             methods: {
                   ...mapActions(['addProject']),
                   add() {
-                              const produto = {
-                                    id: this.sequence,
-                                    tittle: this.tittle,
-                                    area: this.area,
-                                    responsible: this.responsible,
-                                    price: this.price
-                              }
-                              this.sequence++
-                        this.$store.dispatch('addProject', produto)
+                        const project = {
+                              id: this.sequence,
+                              // id: this.$store.state.projectsList.projects.length(),
+                              tittle: this.tittle,
+                              area: this.area,
+                              responsible: this.responsible,
+                              price: this.price
+                        }
+                        this.sequence++
+                        this.$store.dispatch('addProject', project)
+                        // localStorage.setItem('projects', JSON.stringify(this.$store.state.projectsList.projects))
+                        setTimeout(()=>{
+                              this.$router.push('/projetos')
+                        }, 1500)
                   }
             }
       }
@@ -100,7 +110,6 @@
             padding: 10px;
             margin-top: 1rem;
             background-color: #f1f1f1;
-            color: #000;
             border-radius: 5px;
             cursor: pointer;
       }

@@ -32,7 +32,6 @@
   margin-top: 5px;
   margin-bottom   : 5px;
   background-color: #f1f1f1;
-  color: #000;
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;

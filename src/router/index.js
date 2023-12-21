@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import RegistrationView from '../views/RegistrationView.vue'
 import ProjectsView from '../views/ProjectsView.vue'
+import ProjectView from '../views/ProjectView'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,12 @@ const routes = [
     path: '/projetos',
     name: 'projectsList',
     component: ProjectsView
+  },
+  {
+    path: '/projeto/:id',
+    name: 'project',
+    params: true,
+    component: ProjectView
   }
 ]
 

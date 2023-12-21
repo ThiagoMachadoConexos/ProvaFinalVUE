@@ -20,13 +20,15 @@ nav {
   padding: 30px;
 }
 
-a {
+button {
   font-weight: bold;
   color: #2c3e50;
   text-decoration: none;
 }
 
-a.router-link-exact-active {
-  color: inherit;
+a {
+  font-weight: bold;
+  color: #2c3e50;
+  text-decoration: none;
 }
 </style>

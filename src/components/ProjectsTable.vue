@@ -16,29 +16,43 @@
                               <td>{{ project.area }}</td>
                               <td>{{ project.responsible }}</td>
                               <td>{{ project.price }}</td>
-                              <td><button>Executar</button></td>
+                              <td><router-link :to="{ name: 'project', params: { id: project.id } }">Executar</router-link></td>
+                              
                         </tr>
                   </tbody>
-                  <button class="table-button"><router-link to="/cadastrar">Cadastrar Novo Projeto</router-link></button>
+                  <div class="button-card">
+                        <button class="table-button"><router-link to="/cadastrar">Cadastrar Novo Projeto</router-link></button>
+                  </div>
             </table>
       </div>
 </template>
 
 <script>
+
       export default {
+            data(){
+                  return{
+                        projectsArray: []
+                  }
+            },
             computed: {
                   projects(){
-                        return this.$store.state.projectsList.projects
+                        // if (localStorage.getItem('projects')){
+                        //       return this.projectsArray
+                        // }
+                        // else{
+                              return this.$store.state.projectsList.projects
+                        // }
                   }
             },
-            mounted() {
-                  if (localStorage.getProjects()){
-                        this.projects = localStorage.getProjects()
-                  }
-            },
-            unmounted(){
-                  localStorage.setItem(this.projects)
-            }
+            // mounted() {
+            //       if (localStorage.getItem('projects')){
+            //             const json = localStorage.getItem('projects')
+            //             const projectStorage = JSON.parse(json)
+            //             this.projectsArray = projectStorage
+            //             this.$store.dispatch('loadProject', projectStorage)
+            //       }
+            // }
       }
 </script>
 
@@ -58,17 +72,30 @@
       th {
             background-color: #eee;
       }
+      .button-card {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+      }
+
+      .menu-button:hover {
+      background-color: #ccc;
+      }
+
       .table-button{
             width: 50%;
             height: 50px;
             margin-top: 5px;
             margin-bottom   : 5px;
             background-color: #f1f1f1;
-            color: #000;
             font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
       }
+
       .table-button:hover {
             background-color: #ccc;
       }
