@@ -3,7 +3,7 @@
             <div class="menu">
                   <button class="menu-button"><router-link to="/cadastrar">Cadastrar Novo Projeto</router-link></button>
                   <button class="menu-button"><router-link to="/projetos">Projetos</router-link></button>
-                  <button class="menu-button">Executar</button>
+                  <button class="menu-button"><router-link to="/execucao">Execução</router-link></button>
             </div>
       </div>
 </template>

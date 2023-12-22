@@ -6,21 +6,18 @@
                         <input class="form-input" type="text" name="tittle" id="tittle" :value="project.tittle" disabled>
                   
                         <p>Area do projeto</p>
-                        <input class="form-input" type="text" name="tittle" id="tittle" placeholder="Título.." :value="project.area" disabled>
+                        <input class="form-input" type="text" name="area" id="area" placeholder="Título.." :value="project.area" disabled>
                   
                         <p>Responsável</p>
-                        <input class="form-input" type="text" name="tittle" id="tittle" placeholder="Responsável.." :value="project.responsible" disabled>
+                        <input class="form-input" type="text" name="responsible" id="responsible" placeholder="Responsável.." :value="project.responsible" disabled>
                   
                         <p>Gasto mensal do projeto</p>
-                        <input class="form-input" type="text" name="tittle" id="tittle" placeholder="Digite um valor.." :value="project.price" disabled>
+                        <input class="form-input" type="text" name="price" id="price" placeholder="Digite um valor.." :value="project.price" disabled>
                   
                         <p>Tempo de Execução</p>
-                        <input class="form-input" type="text" name="tittle" id="tittle" placeholder="Digite um valor.." v-model="executeTime">
-                 
-                        <p>Tempo de Execução</p>
-                        <input class="form-input" type="text" name="tittle" id="tittle" placeholder="Digite um valor.." :value="project.executeTime" disabled>
-                  
-                        <button class="form-button" @click="add">Cadastrar</button>
+                        <input class="form-input" type="text" name="executeTime" id="executeTime" placeholder="Digite um valor.." v-model="project.executeTime">
+            
+                        <button class="form-button" @click="addTime">Cadastrar</button>
                         <button class="form-button"><router-link to="/projetos">Voltar</router-link> </button>
                   </div>
             </div>
@@ -36,16 +33,11 @@ import { mapActions } from 'vuex'
                   project(){
                         const id = this.$route.params.id
                         return this.$store.state.projectsList.projects[id]
-                  },
-                  executeProject(){
-                        const id = this.$route.params.id
-                        //this.$store.executeTime.getExecutionProject(this.$store.executeTime.executions, id)
-                        return this.$store.executeTime.executions[id]
                   }
             },
             methods: {
                   ...mapActions(['addExecuteTime']),
-                  add() {
+                  addTime() {
                               const time = {
                                     projectID: this.$route.params.id,
                                     time: this.executeTime

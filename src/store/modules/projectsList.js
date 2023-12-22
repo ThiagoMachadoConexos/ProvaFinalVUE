@@ -15,15 +15,15 @@ export default {
         getters:{
             getExecutionProject(state, id){
                 return state.executions.find((e) => e.projectID === id)
+            },
+            getProById: (state) => (id) => {
+                const { propertyCountry } = state.properties.find(p=> p.id === id)
+                return propertyCountry;
             }
-            //     valorTotal(state){
-            //        return state.produtos.map(p => p.quantidade * p.preco)
-            //         .reduce((total, atual) => total + atual, 0)
-            //     }
         },
         mutations:{
             addProject(state, payLoad){
-                state.projects.push(payLoad)
+                state.projects = [...state.projects, payLoad];
             },
             loadProject(state,payLoad){
                 state.projects = payLoad

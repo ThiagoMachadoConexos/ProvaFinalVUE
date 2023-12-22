@@ -7,7 +7,7 @@
                         <th>Area do Projeto</th>
                         <th>Responsável</th>
                         <th>Gasto Mensal</th>
-                        <th>Executar</th>
+                        <th>Tempo de Execução</th>
                   </thead>
                   <tbody>
                         <tr v-for="project in projects" :key="project.id">
@@ -16,13 +16,17 @@
                               <td>{{ project.area }}</td>
                               <td>{{ project.responsible }}</td>
                               <td>{{ project.price }}</td>
-                              <td><router-link :to="{ name: 'project', params: { id: project.id } }">Executar</router-link></td>
-                              
+                              <td>{{ project.executeTime }}</td>
                         </tr>
                   </tbody>
-                  <div class="button-card">
-                        <button class="table-button"><router-link to="/cadastrar">Cadastrar Novo Projeto</router-link></button>
-                  </div>
+                  <tfoot>
+                        <th>Total</th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th>{{ total }} </th>
+                  </tfoot>
             </table>
       </div>
 </template>
@@ -38,16 +42,15 @@
             computed: {
                   projects(){
                         return this.$store.state.projectsList.projects
+                  },
+                  total(){
+                        var total =0;
+                        this.$store.state.projectsList.projects.forEach(element => {
+                              total += element.executeTime
+                        })
+                        return total
                   }
-            },
-            // created() {
-            //       if (localStorage.getItem('projects')){
-            //             const json = localStorage.getItem('projects')
-            //             const projectStorage = JSON.parse(json)
-            //             this.projectsArray = projectStorage
-            //             this.$store.dispatch('addProject', projectStorage)
-            //       }
-            // }
+            }
       }
 </script>
 

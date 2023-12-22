@@ -20,10 +20,10 @@
                   </div>
                   <div>
                         <p>Gasto mensal do projeto</p>
-                        <input class="form-input" type="text" name="tittle" id="tittle" placeholder="Digite um valor.." v-model="price">
+                        <input class="form-input" type="number" name="tittle" id="tittle" placeholder="Digite um valor.." v-model="price">
                   </div>
                   <div>
-                        <button class="form-button" type="submit" @click="add">Cadastrar</button>
+                        <button class="form-button" type="submit" @click="addProject">Cadastrar</button>
                         <button class="form-button" type="reset">Limpar</button>
                   </div>
             </div>
@@ -57,7 +57,7 @@ import { mapActions } from 'vuex'
             },
             methods: {
                   ...mapActions(['addProject']),
-                  add() {
+                  addProject() {
                         const project = {
                               id: this.sequence,
                               // id: this.$store.state.projectsList.projects.length(),

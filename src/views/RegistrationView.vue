@@ -8,12 +8,12 @@
 
 import RegistrationForm from '@/components/RegistrationForm.vue'
 
-export default {
-  name: 'RegistrationView',
-  components: {
-    RegistrationForm
+  export default {
+    name: 'RegistrationView',
+    components: {
+      RegistrationForm
+    }
   }
-}
 
 </script>
 

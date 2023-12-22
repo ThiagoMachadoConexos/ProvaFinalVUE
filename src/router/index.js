@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import RegistrationView from '../views/RegistrationView.vue'
 import ProjectsView from '../views/ProjectsView.vue'
 import ProjectView from '../views/ProjectView'
+import ExecutionView from '../views/ExecutionView'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
     name: 'project',
     params: true,
     component: ProjectView
+  },
+  {
+    path: '/execucao',
+    name: 'execution',
+    component: ExecutionView
   }
 ]
 
